@@ -3,13 +3,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import Router from './Component/Router/Router'
 import RecordDetails from './Component/RecordDetails/RecordDetails'
-
+import reportWebVitals from './reportWebVitals';
+import { BrowserRouter,Switch,Route} from "react-router-dom";
 ReactDOM.render(
-  <React.StrictMode>
-    <App/>
-  </React.StrictMode>,
+  <div>
+    <BrowserRouter>
+      <Switch>
+        {/* <Route path='/' component={Router} /> */}
+      <Route path="/recordsdetails/:Id" component={RecordDetails}/>
+      <Route path="/" component={App} />  
+      </Switch>  
+    </BrowserRouter>
+  </div>,
   document.getElementById('root')
 );
 

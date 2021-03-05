@@ -15,7 +15,7 @@ import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import axiosInstance from'./Axios'
-  import history from './Component/History/history';
+//   import history from './Component/History/history';
 import RecordDetails from './Component/RecordDetails/RecordDetails';
 
 // let  uuidData = data.map(i=>{
@@ -50,7 +50,7 @@ const [currentPage,setCurrentPage]=useState(1)
 const [itemPerPage,setItemPerPage] = useState(25)
 const [flag, setFlag] = useState(false)
 
-// const history= useHistory()
+ const history= useHistory()
 
 // console.log(page,'page')
 // console.log(page.length,'page.length')
@@ -171,8 +171,7 @@ function handleCardContainerOnClick(Id){
     // setViewCurrentRecord(entry[0])
     //  setModelOpen(true);
     console.log(Id)
-    history.push(`recordsdetails/${Id}`)
-    
+    history.push(`/recordsdetails/${Id}`)
 }
 
 function handleGraduationDateOnChange(year){
