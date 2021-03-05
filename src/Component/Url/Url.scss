@@ -1,0 +1,32 @@
+a:link {
+    background-color: yellow;
+  }
+  
+  a:visited {
+    background-color: brown;
+  }
+  
+  a:hover {
+    background-color: lightgreen;
+  }
+  
+  a:active {
+    background-color: blue;
+  } 
+
+  .Url-container {
+    display: inline;
+    }
+
+
+.new-style {
+      display: inline;
+    }
+
+  .new-style a:link  {
+    background-color: brown;
+   }
+   
+  .new-style a:hover  {
+    background-color: yellow;
+   }

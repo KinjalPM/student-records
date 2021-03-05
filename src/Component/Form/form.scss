@@ -1,0 +1,37 @@
+a:link {
+    background-color: yellow;
+  }
+  
+  a:visited {
+    background-color: cyan;
+  }
+  
+  a:hover {
+    background-color: lightgreen;
+  }
+  
+  a:active {
+    background-color: purple;
+  } 
+
+  .Url-container {
+    display: inline;
+    }
+
+
+.new-style {
+      display: inline;
+    }
+
+  .new-style a:link  {
+    background-color: brown;
+   }
+   
+  .new-style a:hover  {
+    background-color: orange;
+   }
+
+   .form-container{
+    margin:10px;
+    padding:10px;
+   }
