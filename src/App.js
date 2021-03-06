@@ -379,6 +379,7 @@ return (
         <Button disabled={page.length == currentPage} onClick={()=>setCurrentPage(parseInt(currentPage)+1)} color="primary">Next</Button>
         <br></br>
         <br></br>
+        
         {/* <label style={{marginLeft:'20px'}}>Number of records per page  </label>
         <input onBlur={(e)=>setItemPerPage(e.target.value)} type='number' /> */}
         </div>
