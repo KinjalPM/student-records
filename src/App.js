@@ -26,12 +26,13 @@ const [companyName,setcompanyName] =useState("")
 const [searchText,setSearchText]=useState("")
 const [searchInvoked,setSearchInvoked]=useState(false)
 const [flag, setFlag] = useState(false)
-
+const [nextCursor, setNextCursor] = useState(null)
+console.log(nextCursor,'nextCursor');
 const history= useHistory()
 
 useEffect(()=>{
     setFlag(true);
-   axios.get('/v1/record/getAllRecords')
+   axios.get(`/v1/record/getpaginatedrecords?next_cursor=${nextCursor}`)
     .then(
         res=>{
             console.log(res)
@@ -51,7 +52,7 @@ useEffect(()=>{
             function handleClear(){
                 setSearchText("")
                 setSearchInvoked(false)
-                axios.get('/v1/record/getAllRecords') 
+                axios.get(`/v1/record/getpaginatedrecords?next_cursor=${nextCursor}`) 
                 .then(res=>{
                         console.log(res)
                         setData(res.data)
@@ -80,10 +81,11 @@ useEffect(()=>{
             }
 
             useEffect(()=>{
-                if(searchText.length ===0){
-                    setSearchInvoked(false)
+                if(data && data.length) {
+                    const lastElemId = data[data.length-1]._id
+                   setNextCursor(lastElemId)
                 }
-              },[data])
+                },[data])
 
             function handleKeyPress (e) {
                 if(e.which == 13 || e.keyCode == 13){
@@ -91,6 +93,36 @@ useEffect(()=>{
                   handleSearch()
                 }
               }
+
+              function getNext(){
+                setFlag(true)
+                    axios.get(`v1/record/getpaginatedrecords?next_cursor=${nextCursor}`)
+                        .then(res=>{
+                            console.log(res)
+                            let copyData=[...data,...res.data]
+                            setData(copyData)
+                            setFlag(false)
+                        })
+                        .catch(e=>{
+                            setFlag(false)
+                            console.log(e)
+                        })
+            }
+            function getprev(){
+                setFlag(true)
+                    axios.get(`v1/record/getpaginatedrecords?next_cursor=${nextCursor}`)
+                        .then(res=>{
+                            console.log(res)
+                            let copyData=[...data,...res.data]
+                            setData(copyData)
+                            setFlag(false)
+                        })
+                        .catch(e=>{
+                            setFlag(false)
+                            console.log(e)
+                        })
+            }
+
             
 
 
@@ -113,6 +145,12 @@ return (
     </div>
      
     <div>
+    <div style={{margin:'20px',textAlign:'right'}}>
+    <Button disabled={data.length===100?true:false} onClick={()=>getNext()} color="secondary">Next</Button>
+    </div>
+    {/* <div style={{margin:'20px',textAlign:'left'}}>
+    <Button disabled={data.length===0?true:false} onClick={()=>getprev()} color="secondary">Previous</Button>
+    </div> */}
     <CustomizedTables
     data={data}/>
     </div>  
