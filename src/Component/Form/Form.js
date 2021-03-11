@@ -5,14 +5,14 @@ import './form.scss';
 
 function Form({
     careerUrl,
-    employer,
+    companyName,
     graduationDate,
     jobStartYear,
     jobTitle,
     specialization,
     universityName,
     setCareerUrl,
-    setEmployer,
+    setcompanyName,
     setGraduationDate,
     setJobStartYear,
     setJobTitle,
@@ -25,7 +25,7 @@ function Form({
 
 
 function handleFormDisable () {
-let elen= employer.length
+let elen= companyName.length
 if(elen >=2 && elen <=20 && !isSubmitDisabled){
     return false 
 }
@@ -42,9 +42,9 @@ return true
          {careerUrl}
         </div>
         <br></br>
-        <div><label>Employer </label>
-      <input onChange={(e)=>setEmployer(e.target.value)} value={employer} type='text' placeholder='Name of Company'></input>
-      {employer}
+        <div><label>companyName </label>
+      <input onChange={(e)=>setcompanyName(e.target.value)} value={companyName} type='text' placeholder='Name of Company'></input>
+      {companyName}
       </div>
       <br></br>
         <div> <label>Graduation Year </label>
