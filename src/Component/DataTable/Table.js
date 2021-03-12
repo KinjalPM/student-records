@@ -8,6 +8,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Badge } from 'reactstrap';
+import { useHistory } from "react-router-dom";
+
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -15,7 +17,7 @@ const StyledTableCell = withStyles((theme) => ({
       color: theme.palette.common.white,
     },
     body: {
-      fontSize: 14,
+      fontSize: 12,
     },
   }))(TableCell);
   
@@ -34,12 +36,23 @@ const StyledTableCell = withStyles((theme) => ({
     },
   });
   
+
+
+
 function  CustomizedTables({data}){
     // console.log('data'+data);
     // (data.map((row)=>{
     //     console.log("Row----"+row.company.companyName)
     // }))
     const classes = useStyles();
+
+    const history= useHistory()
+
+    // const edittherecord = (p) => {
+    //   console.log(p+"----------in table")
+    //   history.push(`/editrec/id?${p}`);
+    // }
+
     return(
 <TableContainer  component={Paper}>
 <Badge style={{margin:'20px'}} color="success"> {`Found ${data.length} records`}</Badge>
@@ -47,12 +60,13 @@ function  CustomizedTables({data}){
         <TableHead>
           <TableRow>
             <StyledTableCell>Company</StyledTableCell>
-            <StyledTableCell align="right">Job Title</StyledTableCell>
-            <StyledTableCell align="right">Job Start Date</StyledTableCell>
-            <StyledTableCell align="right">University Name</StyledTableCell>
-            <StyledTableCell align="right">Graduation Year</StyledTableCell>
-            <StyledTableCell align="right">Specialization</StyledTableCell>
-            <StyledTableCell align="right">Career Link</StyledTableCell>
+            <StyledTableCell align="left">Job Title</StyledTableCell>
+            <StyledTableCell align="left">Job Start Date</StyledTableCell>
+            <StyledTableCell align="left">University Name</StyledTableCell>
+            <StyledTableCell align="left">Graduation Year</StyledTableCell>
+            <StyledTableCell align="left">Specialization</StyledTableCell>
+            <StyledTableCell align="left">Career Link</StyledTableCell>
+            <StyledTableCell align="left">Edit Details</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -61,18 +75,20 @@ function  CustomizedTables({data}){
               <StyledTableCell component="th" scope="row">
                 {row.company.companyName}
               </StyledTableCell>
-              <StyledTableCell align="right">{row.Job_Title}</StyledTableCell>
-              <StyledTableCell align="right">{row.Job_Start_Date}</StyledTableCell>
-              <StyledTableCell align="right">{row.University_Name}</StyledTableCell>
-              <StyledTableCell align="right">{row.Graduation_Year}</StyledTableCell>
-              <StyledTableCell align="right">{row.Specialization}</StyledTableCell>
-              <StyledTableCell align="right" >
+              <StyledTableCell align="left">{row.Job_Title}</StyledTableCell>
+              <StyledTableCell align="left">{row.Job_Start_Date}</StyledTableCell>
+              <StyledTableCell align="left">{row.University_Name}</StyledTableCell>
+              <StyledTableCell align="left">{row.Graduation_Year}</StyledTableCell>
+              <StyledTableCell align="left">{row.Specialization}</StyledTableCell>
+              <StyledTableCell align="left" >
                   
                   <a style={{ textDecoration: 'none', backgroundColor: 'pink' }}href={`${row.company.careerUrl}`} target="_blank">Apply</a>
-                  
                   </StyledTableCell>
-            </StyledTableRow>
+              <StyledTableCell align="left" target="_blank"><a href={'/editrec/'+row._id}  style={{ textDecoration: 'none', backgroundColor: 'pink' }} >Edit</a></StyledTableCell>
+              </StyledTableRow>
           ))}
+{/* <StyledTableCell align="left"onClick={()=> edittherecord(row._id)} target="_blank">Edit</StyledTableCell> */}
+
         </TableBody>
     </Table>
 </TableContainer>
